@@ -8,8 +8,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +17,132 @@
   }
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Improved container padding on mobile */
+.container {
+  width: 100%;
+  max-width: 1280px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #2563eb, #7c3aed);
+}
+
+/* Prevent text selection issues on buttons */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth transitions for theme changes */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body,
+section,
+div,
+nav,
+header,
+footer {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ensure all elements with bg classes transition smoothly */
+.bg-white,
+.bg-gray-50,
+.bg-gray-100,
+.bg-gray-800,
+.bg-gray-900,
+.dark\:bg-gray-800,
+.dark\:bg-gray-900,
+.dark\:bg-black {
+  transition: background-color 0.3s ease;
+}
+
+/* Optimize images for better performance */
+img {
+  content-visibility: auto;
+}
+
+/* Better focus states for accessibility */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Remove default focus outline when using mouse */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Improve mobile touch targets */
+@media (max-width: 768px) {
+  button:not(.theme-toggle),
+  a {
+    min-height: 44px;
+  }
+}
+
+/* Better mobile scrolling */
+@media (max-width: 768px) {
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+/* Gradient animation for buttons */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient-shift 3s ease infinite;
 }
